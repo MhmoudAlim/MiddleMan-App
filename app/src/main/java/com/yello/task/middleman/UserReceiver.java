@@ -44,9 +44,13 @@ public class UserReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
         } else if ("com.yello.task.MiddleMan.response".equals((intent.getAction()))){
+            String status = intent.getStringExtra("Status");
 
-            Toast.makeText(context, "(Middle Man App)\nResponse From Receiver APP : SUCCESS!" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "(Middle Man App)\nResponse From Receiver APP : "
+                    + status , Toast.LENGTH_SHORT).show();
+
             intent1.setAction("com.yello.task.emitter.response");
+            intent1.putExtra("Status", status);
             intent1.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             context.sendBroadcast(intent1);
         }
