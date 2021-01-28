@@ -15,11 +15,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         IntentFilter filter = new IntentFilter("com.yello.task.middleman");
         registerReceiver(userReceiver, filter);
+        IntentFilter responseFilter = new IntentFilter("com.yello.task.MiddleMan.response");
+        registerReceiver(userReceiver, responseFilter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        unregisterReceiver(userReceiver);
+        unregisterReceiver(userReceiver);
     }
 }
